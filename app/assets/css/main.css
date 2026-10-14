@@ -1,0 +1,75 @@
+@import 'tailwindcss';
+
+/* @font-face для Nunito — в public/fonts/nunito.css (подключается в nuxt.config.ts) */
+
+/*
+ * Токены из Figma (коллекция «Paywall tokens», стили цветов).
+ * Имя в Figma → утилита Tailwind.
+ */
+@theme {
+  --font-sans: 'Nunito', ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
+
+  --color-screen: #e7f1ff;          /* color/bg/screen */
+  --color-fg: #1b2a4a;              /* color/text/primary */
+  --color-fg-muted: #5a6a8a;        /* color/text/secondary */
+  --color-card-border: #d5dfee;     /* color/border/card */
+  --color-surface: #ffffff;         /* color/surface/white */
+
+  --color-accent: #ff7a1a;          /* color/accent/primary */
+  --color-accent-press: #e8650a;    /* тень CTA */
+  --color-accent-tint: #fff3ea;     /* color/accent/tint — фон выбранной карточки */
+  --color-accent-disabled: #f6b98e; /* color/accent/disabled */
+  --color-accent-disabled-press: #eba273;
+
+  --color-success: #22a45d;         /* color/status/success */
+  --color-danger: #e5484d;          /* color/status/error */
+  --color-danger-fg: #9b1c20;       /* color/status/error-text */
+  --color-danger-tint: #fdecec;     /* color/status/error-tint */
+
+  --color-skeleton: #e8edf5;        /* color/skeleton/base */
+  --color-skeleton-hi: #f4f7fb;     /* color/skeleton/highlight */
+
+  --animate-shimmer: shimmer 1.2s ease-in-out infinite;
+  --animate-spin-fast: spin 0.8s linear infinite;
+
+  @keyframes shimmer {
+    from { background-position: 100% 0; }
+    to { background-position: -100% 0; }
+  }
+}
+
+@layer base {
+  html,
+  body {
+    background-color: var(--color-screen);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button {
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  button:disabled {
+    cursor: default;
+  }
+
+  :focus-visible {
+    outline: 3px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
